@@ -1,0 +1,19 @@
+@mixin section-border() {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+@mixin center(){
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin horizontal-center(){
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+@mixin vertical-center(){
+  top: 50%;
+  transform:translatey(-50%);
+}
