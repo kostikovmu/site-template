@@ -29,7 +29,7 @@ gulp.task('server', function() {
 
 /* ------------ Pug compile ------------- */
 gulp.task('templates:compile', function buildHTML() {
-  return gulp.src('source/template/index.pug')
+  return gulp.src('source/template/pages/**/*.*')
     .pipe(pug({
       pretty: true
     }))
