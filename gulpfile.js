@@ -13,6 +13,10 @@ const notify          = require("gulp-notify");
 const cssnano         = require('gulp-cssnano');
 const postcss         = require('gulp-postcss');
 const autoprefixer    = require('autoprefixer');
+const svgSprite       = require('gulp-svg-sprite');
+const svgmin          = require('gulp-svgmin');
+const cheerio         = require('gulp-cheerio');
+const replace         = require('gulp-replace');
 
 
 /* -------- Server  -------- */
@@ -71,7 +75,8 @@ gulp.task('libs', function() {
     './node_modules/jquery-ui-dist/jquery-ui.min.js',
     './node_modules/waypoints/lib/jquery.waypoints.min.js',
     './node_modules/jquery.counterup/jquery.counterup.min.js',
-    './node_modules/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js'
+    './node_modules/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js',
+    './node_modules/svg4everybody/dist/svg4everybody.min.js'
   ])
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(concat('libs.min.js'))
@@ -104,8 +109,8 @@ gulp.task('libs', function() {
 
 });
 
-/* ------------ Sprite ------------- */
-gulp.task('sprite', function(cb) {
+/* ------------ Sprite png ------------- */
+gulp.task('sprite-png', function(cb) {
   const spriteData = gulp.src('source/images/icons/*.png').pipe(spritesmith({
     imgName: 'sprite.png',
     imgPath: '../images/sprite.png',
@@ -115,6 +120,44 @@ gulp.task('sprite', function(cb) {
   spriteData.img.pipe(gulp.dest('build/images/'));
   spriteData.css.pipe(gulp.dest('source/styles/global/'));
   cb();
+});
+
+/* ------------ Sprite svg ------------- */
+
+gulp.task('sprite-svg', function () {
+  return gulp.src('source/images/icons/*.svg')
+  // minify svg
+    .pipe(svgmin({
+      js2svg: {
+        pretty: true
+      }
+    }))
+    // remove all fill, style and stroke declarations in out shapes
+    .pipe(cheerio({
+      run: function ($) {
+        $('[fill]').removeAttr('fill');
+        $('[stroke]').removeAttr('stroke');
+        $('[style]').removeAttr('style');
+      },
+      parserOptions: {xmlMode: true}
+    }))
+    // cheerio plugin create unnecessary string '&gt;', so replace it.
+    .pipe(replace('&gt;', '>'))
+    // build svg sprite
+    .pipe(svgSprite({
+      mode: {
+        symbol: {
+          sprite: "../images/sprite.svg",
+          render: {
+            scss: {
+              dest:'../../source/styles/global/sprite_svg.scss',
+              template: "source/styles/global/_sprite_template_svg.scss"
+            }
+          }
+        }
+      }
+    }))
+    .pipe(gulp.dest('build/'));
 });
 
 /* ------------ Delete ------------- */
@@ -160,7 +203,8 @@ gulp.task('watch', function() {
 /*------------- default -------------*/
 gulp.task('default', gulp.series(
   'clean',
-  gulp.parallel('templates:compile', 'styles:compile','js','libs', 'sprite', 'copy'),
+  gulp.parallel('sprite-png', 'sprite-svg'),
+  gulp.parallel('templates:compile', 'styles:compile','js','libs', 'copy'),
   gulp.parallel('watch', 'server')
   )
 );

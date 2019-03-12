@@ -1,6 +1,12 @@
 block variables
 
-DOCTYPE html
+block mixins
+  mixin icon(name,mod)
+    - mod = mod || ''
+    svg(class="icon icon-" + name + ' icon_' + mod)
+      use(xlink:href="images/sprite.svg#" + name)
+
+doctype html
 html(lang='ru')
   head
     meta(charset='UTF-8')
