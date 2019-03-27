@@ -16,13 +16,14 @@ html(lang='ru')
     meta(content="" name="keywords")
     meta(http-equiv='X-UA-Compatible', content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
-    link(rel="stylesheet", href="/css/libs.min.css")
-    link(rel="stylesheet" href="/css/main.min.css")
     link(rel="icon" href="/images/favicon.png")
-    script(src="/js/libs.min.js" defer)
-    script(src="/js/main.min.js" defer)
     <!--[if lt IE 9]>
     script(src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js")
     <![endif]-->
   body
     block content
+    block links
+      link(rel="stylesheet", href="/css/libs.min.css")
+      link(rel="stylesheet" href="/css/main.min.css")
+      script(src="/js/libs.min.js")
+      script(src="/js/main.min.js")

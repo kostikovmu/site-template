@@ -2,7 +2,19 @@
 
 ## Action plan
 
-1. Add fonts and fill fonts.css
+### Common actions
+
+1. Cut images from layout.
+
+2. Add fonts and fill fonts.scss
+
+3. Fill vars.scss with fonts, colors, font-size.
+
+4. View all project to select repeat section and unique section.
+
+5. Fill common.scss (container, section title ...).
+
+###
 
 ## How use
 
@@ -13,11 +25,11 @@
 
 2. Clone this repository
 
-2.1 for https
+* for https
 
 > git clone https://github.com/kostikovmu/portfolio.git
 
-2.2 for SSH key
+* for SSH key
 
 > git clone git@github.com:kostikovmu/portfolio.git
 

@@ -114,7 +114,8 @@ gulp.task('sprite-png', function(cb) {
   const spriteData = gulp.src('source/images/icons/*.png').pipe(spritesmith({
     imgName: 'sprite.png',
     imgPath: '../images/sprite.png',
-    cssName: 'sprite.scss'
+    cssName: 'sprite.scss',
+    padding: 5
   }));
 
   spriteData.img.pipe(gulp.dest('build/images/'));
@@ -138,6 +139,7 @@ gulp.task('sprite-svg', function () {
         $('[fill]').removeAttr('fill');
         $('[stroke]').removeAttr('stroke');
         $('[style]').removeAttr('style');
+        $('style').remove();
       },
       parserOptions: {xmlMode: true}
     }))
