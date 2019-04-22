@@ -76,7 +76,8 @@ gulp.task('libs', function() {
     './node_modules/waypoints/lib/jquery.waypoints.min.js',
     './node_modules/jquery.counterup/jquery.counterup.min.js',
     './node_modules/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js',
-    './node_modules/svg4everybody/dist/svg4everybody.min.js'
+    './node_modules/svg4everybody/dist/svg4everybody.min.js',
+    './node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js'
   ])
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(concat('libs.min.js'))

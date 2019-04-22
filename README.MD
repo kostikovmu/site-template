@@ -14,6 +14,8 @@
 
 5. Fill common.scss (container, section title ...).
 
+6. Make template all pages.
+
 ###
 
 ## How use
@@ -21,6 +23,7 @@
 1. Check software version, if no response install it
 
 > node -v
+
 > npm -v
 
 2. Clone this repository
