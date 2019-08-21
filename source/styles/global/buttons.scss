@@ -1,0 +1,25 @@
+.btn {
+  border: none;
+  background-color: transparent;
+  user-select: none;
+  outline: none;
+  display: inline-block;
+  transition-duration: .3s;
+  cursor: pointer;
+
+  &-main {
+    padding: 15px 55px;
+    font-family: $ff-main;
+    font-size: 20px;
+    color: #000;
+    background-color: $c-accent;
+
+    &:hover {
+      background-color: darken($c-accent, 10);
+    }
+  }
+
+
+
+}
+
