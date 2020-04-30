@@ -37,7 +37,7 @@
     "gulp-svgmin": "^2.1.0",
     "gulp-uglify": "^3.0.2",
     "gulp.spritesmith": "^6.3.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jquery-migrate": "^3.0.1",
     "jquery-ui-dist": "^1.12.1",
     "jquery-ui-touch-punch": "^0.2.3",
